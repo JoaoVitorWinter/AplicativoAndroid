@@ -8,7 +8,6 @@ export default function Home(props) {
 
   const handleClick = (event) => {
     if (player1 != "" && player2 != "") {
-        alert(`${player1} x ${player2}`);
         props.mudarNomeJogadores(player1, player2);
         props.changeScreen("Jogo");
     }
@@ -16,9 +15,9 @@ export default function Home(props) {
 
   return (
     <View style={styles.container}>
-      <Text>Nome Player 1: {player1}</Text>
+      <Text>Nome Player 1 - X: {player1}</Text>
       <TextInput style={styles.input} placeholder={'Player 1'} onChangeText={setPlayer1}></TextInput>
-      <Text>Nome Player 2: {player2}</Text>
+      <Text>Nome Player 2 - O: {player2}</Text>
       <TextInput style={styles.input} placeholder={'Player 2'} onChangeText={setPlayer2}></TextInput>
       <Button style={styles.input} title={"Botão"} onPress={handleClick}>
       </Button>
