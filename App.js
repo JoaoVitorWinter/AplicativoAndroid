@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import EntradaJogadores from './src/EntradaJogadores';
+import Velha from './src/Velha';
 import Home from './src/Home';
-import Jogo from './src/Jogo';
+import EntradaPalavra from './src/EntradaPalavra';
+import Forca from './src/Forca';
 
 export default function App() {
   const [screen, setScreen] = useState("Home");
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
+  const [palavra, setPalavra] = useState("");
 
   const checkScreen = (checkScreen) => checkScreen === screen;
 
@@ -20,8 +24,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      {checkScreen("Home") && <Home mudarNomeJogadores={setJogadores} changeScreen = {changeScreen} />}
-      {checkScreen("Jogo") && <Jogo player1={player1} player2={player2} changeScreen = {changeScreen} />}
+      {checkScreen("Home") && <Home changeScreen = {changeScreen} />}
+      {checkScreen("Velha") && <Velha player1={player1} player2={player2} changeScreen = {changeScreen} />}
+      {checkScreen("EntradaJogadores") && <EntradaJogadores mudarNomeJogadores={setJogadores} changeScreen = {changeScreen} />}
+      {checkScreen("EntradaPalavra") && <EntradaPalavra setPalavra={setPalavra} changeScreen = {changeScreen}/>}
+      {checkScreen("Forca") && <Forca palavra={palavra} changeScreen = {changeScreen}/>}
     </View>
   );
 }
@@ -32,12 +39,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input: {
-    width: "80%",
-    height: 20,
-    borderStyle: "solid",
-    borderColor: "black",
-    borderWidth: 1,
   },
 });

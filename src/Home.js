@@ -1,44 +1,38 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import { useState } from "react";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 
 export default function Home(props) {
-  const [player1, setPlayer1] = useState("");
-  const [player2, setPlayer2] = useState("");
 
-
-  const handleClick = (event) => {
-    if (player1 != "" && player2 != "") {
-        props.mudarNomeJogadores(player1, player2);
-        props.changeScreen("Jogo");
-    }
-  } 
-
-  return (
-    <View style={styles.container}>
-      <Text>Nome Player 1 - X: {player1}</Text>
-      <TextInput style={styles.input} placeholder={'Player 1'} onChangeText={setPlayer1}></TextInput>
-      <Text>Nome Player 2 - O: {player2}</Text>
-      <TextInput style={styles.input} placeholder={'Player 2'} onChangeText={setPlayer2}></TextInput>
-      <Button style={styles.input} title={"Botão"} onPress={handleClick}>
-      </Button>
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Pressable onPress={() => {
+                props.changeScreen("EntradaJogadores");
+            }} style={styles.cardSelecaoJogo} ><Text>Jogo da Velha</Text></Pressable>
+            <Pressable onPress={() => {
+                props.changeScreen("EntradaPalavra");
+            }} style={styles.cardSelecaoJogo} ><Text>Jogo da Forca</Text></Pressable>
+            <Pressable onPress={() => {
+                props.changeScreen("EntradaJogadores");
+            }} style={styles.cardSelecaoJogo} ><Text>Jogo da Memória</Text></Pressable>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    flex: 1,
-    gap: 20,
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    width: "80%",
-    height: 20,
-    borderStyle: "solid",
-    borderColor: "black",
-    borderWidth: 1,
-  },
+    container: {
+        flex: 1,
+        gap: 20,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    cardSelecaoJogo: {
+        width: 300,
+        height: 75,
+        borderStyle: "solid",
+        borderColor: "black",
+        borderWidth: 1,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });

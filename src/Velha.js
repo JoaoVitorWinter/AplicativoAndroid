@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
-export default function Jogo(props) {
+export default function Velha(props) {
     const [botoes, setBotoes] = useState([
         [" ", " ", " "],
         [" ", " ", " "],
         [" ", " ", " "]
     ]);
     const [vez, setVez] = useState("X");
+
+     useEffect(() => {  
+         verificarVitoria();
+     }, [botoes]);
 
     const trocarVez = () => {
         if (vez == "X") {
@@ -65,10 +69,9 @@ export default function Jogo(props) {
 
     function handleClickBotoes(x, y) {
         if (botoes[x][y] == " ") {
-            var novaMatriz = botoes;
+            var novaMatriz = [[...botoes[0]], [...botoes[1]], [...botoes[2]]];
             novaMatriz[x][y] = vez;
             setBotoes(novaMatriz);
-            verificarVitoria();
             trocarVez();
         }
     }
