@@ -95,6 +95,7 @@ export default function Memoria(props) {
             setQuantidadeTrue((quantidadeTrue - 2));
             setCartasMostradas(cartasBoolean);
             setSituacao("Errou!")
+            trocarVez();
         } else {
             if (vez == props.player1) {
                 setPontos1(pontos1 + 1);
@@ -105,7 +106,6 @@ export default function Memoria(props) {
         }
         setTimeout(() => {
             setSituacao("Jogue!")
-            trocarVez();
             setPodeJogar(true);
         }, 1000);
     }
