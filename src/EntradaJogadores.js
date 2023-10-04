@@ -9,12 +9,13 @@ export default function EntradaJogadores(props) {
   const handleClick = (event) => {
     if (player1 != "" && player2 != "") {
         props.mudarNomeJogadores(player1, player2);
-        props.changeScreen("Velha");
+        props.changeScreen(props.jogo);
     }
   } 
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>{props.jogo}</Text>
       <Text>Player 1: {player1}</Text>
       <TextInput style={styles.input} placeholder={'Player 1'} onChangeText={setPlayer1}></TextInput>
       <Text>Player 2: {player2}</Text>
@@ -41,5 +42,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     padding: 5,
+  },
+  titulo: {
+    fontSize: 30,
   },
 });

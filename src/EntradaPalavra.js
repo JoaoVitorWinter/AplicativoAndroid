@@ -17,7 +17,7 @@ export default function EntradaPalavra(props) {
 
     return (
         <View style={styles.container}>
-            <Text>Digite a palavra secreta da forca!</Text>
+            <Text>Digite a palavra secreta da forca! Apenas letras sem acento e espaços!</Text>
             <TextInput style={styles.input} placeholder={"Palavra secreta"} onChangeText={setPalavra}></TextInput>
             <Pressable style={styles.botao} onPress={handleClickComecar}><Text style={styles.texto}>Começar</Text></Pressable>
             <Pressable style={styles.botao} onPress={handleClickVoltar}><Text style={styles.texto}>Voltar</Text></Pressable>

@@ -6,12 +6,14 @@ import Velha from './src/Velha';
 import Home from './src/Home';
 import EntradaPalavra from './src/EntradaPalavra';
 import Forca from './src/Forca';
+import Memoria from './src/Memoria';
 
 export default function App() {
   const [screen, setScreen] = useState("Home");
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
   const [palavra, setPalavra] = useState("");
+  const [jogo, setJogo] = useState("");
 
   const checkScreen = (checkScreen) => checkScreen === screen;
 
@@ -21,14 +23,16 @@ export default function App() {
   }
 
   const changeScreen = (newScreen) => setScreen(newScreen);
+  const changeJogo = (newJogo) => setJogo(newJogo);
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      {checkScreen("Home") && <Home changeScreen = {changeScreen} />}
+      {checkScreen("Home") && <Home changeJogo={changeJogo} changeScreen = {changeScreen} />}
       {checkScreen("Velha") && <Velha player1={player1} player2={player2} changeScreen = {changeScreen} />}
-      {checkScreen("EntradaJogadores") && <EntradaJogadores mudarNomeJogadores={setJogadores} changeScreen = {changeScreen} />}
+      {checkScreen("EntradaJogadores") && <EntradaJogadores jogo={jogo} mudarNomeJogadores={setJogadores} changeScreen = {changeScreen} />}
       {checkScreen("EntradaPalavra") && <EntradaPalavra setPalavra={setPalavra} changeScreen = {changeScreen}/>}
       {checkScreen("Forca") && <Forca palavra={palavra} changeScreen = {changeScreen}/>}
+      {checkScreen("Memoria") && <Memoria player1={player1} player2={player2} changeScreen = {changeScreen}/>}
     </View>
   );
 }

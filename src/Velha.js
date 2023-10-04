@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
+// Mudar para Pressable
 export default function Velha(props) {
     const [botoes, setBotoes] = useState([
         [" ", " ", " "],
