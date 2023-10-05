@@ -12,7 +12,7 @@ export default function Forca(props) {
         "\t|\n" +
         "\t|\n" +
         "\t|\n" +
-        "=========")
+        "=======")
     let array = props.palavra.split("");
     let input = document.getElementById("input");
     array = array.map((letra) => {
@@ -41,7 +41,7 @@ export default function Forca(props) {
                     "\t|\n" +
                     "\t|\n" +
                     "\t|\n" +
-                    "=========");
+                    "=======");
                 break;
             case 2:
                 setDesenho("+---+\n" +
@@ -50,7 +50,7 @@ export default function Forca(props) {
                     " |\t|\n" +
                     "\t|\n" +
                     "\t|\n" +
-                    "=========");
+                    "=======");
                 break;
             case 3:
                 setDesenho("+---+\n" +
@@ -59,7 +59,7 @@ export default function Forca(props) {
                     "/|\t|\n" +
                     "\t|\n" +
                     "\t|\n" +
-                    "=========");
+                    "=======");
                 break;
             case 4:
                 setDesenho("+---+\n" +
@@ -68,7 +68,7 @@ export default function Forca(props) {
                     "/|\\\t|\n" +
                     "\t|\n" +
                     "\t|\n" +
-                    "=========");
+                    "=======");
                 break;
             case 5:
                 setDesenho("+---+\n" +
@@ -77,7 +77,7 @@ export default function Forca(props) {
                     "/|\\\t|\n" +
                     "/\t|\n" +
                     "\t|\n" +
-                    "=========");
+                    "=======");
                 break;
             case 6:
                 setDesenho("+---+\n" +
@@ -86,7 +86,7 @@ export default function Forca(props) {
                     "/|\\\t|\n" +
                     "/ \\\t|\n" +
                     "\t|\n" +
-                    "=========");
+                    "=======");
 
                 alert(`Você perdeu! A palavra secreta era ${props.palavra}`);
                 voltarHome();
@@ -137,6 +137,8 @@ export default function Forca(props) {
                 if (!verificarChute(chute)) {
                     return;
                 }
+
+                setErros((erros + 1));
             }
         } else {
             return alert("Chute inválido!")
@@ -159,18 +161,19 @@ export default function Forca(props) {
     return (
         <View style={styles.container}>
             <View style={styles.divForca}>
-                <Text>{desenho}</Text>
+                <Text style={styles.texto}>Dica: {props.dica}</Text>
+                <Text style={styles.caixaDesenho}>{desenho}</Text>
             </View>
             <View style={styles.divJogo}>
-                <Text>{letrasJogadas}</Text>
-                <Text>{letras}</Text>
+                <Text style={styles.caixaLetras}>{letrasJogadas}</Text>
+                <Text style={styles.texto}>{letras}</Text>
             </View>
             <View style={styles.divChute}>
-                <TextInput id={"input"}style={styles.input} placeholder={"Seu chute"} onChangeText={setChute}></TextInput>
+                <TextInput id={"input"} style={styles.input} placeholder={"Seu chute"} onChangeText={setChute}></TextInput>
                 <Pressable style={styles.botao} onPress={() => {
                     fazerChute(chute);
-                }}><Text style={styles.texto}>Chutar</Text></Pressable>
-                <Pressable style={styles.botao} onPress={voltarHome}><Text style={styles.texto}>Voltar</Text></Pressable>
+                }}><Text>Chutar</Text></Pressable>
+                <Pressable style={styles.botao} onPress={voltarHome}><Text>Voltar</Text></Pressable>
             </View>
         </View>
     );
@@ -179,17 +182,40 @@ export default function Forca(props) {
 
 const styles = StyleSheet.create({
     container: {
+        width: "100%",
         flex: 1,
         gap: 20,
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "#393E41",
     },
     divForca: {
-
+        gap: 20,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    caixaDesenho: {
+        paddingHorizontal: 100,
+        paddingVertical: 40,
+        borderStyle: "solid",
+        borderColor: "#FAFAFA",
+        borderWidth: 1,
+        borderRadius: 10,
+        color: "#FAFAFA",
     },
     divJogo: {
         alignItems: "center",
         justifyContent: "center",
+    },
+    caixaLetras: {
+        width: 300,
+        minHeight: 20,
+        borderStyle: "solid",
+        borderColor: "#FAFAFA",
+        borderWidth: 1,
+        borderRadius: 10,
+        textAlign: "center",
+        color: "#FAFAFA",
     },
     divChute: {
         alignItems: "center",
@@ -199,18 +225,19 @@ const styles = StyleSheet.create({
     input: {
         width: 300,
         height: 30,
+        backgroundColor: "#393E41",
         borderStyle: "solid",
-        borderColor: "black",
+        borderColor: "#FAFAFA",
         borderWidth: 1,
-        padding: 5,
+        paddingHorizontal: 15,
+        borderRadius: 8,
+        color: "white",
     },
     botao: {
-        padding: 15,
-        width: 100,
-        backgroundColor: "#0050FF",
-        borderStyle: "solid",
-        borderColor: "black",
-        borderWidth: 1,
+        width: 300,
+        height: 50,
+        backgroundColor: "#FAFAFA",
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
     },

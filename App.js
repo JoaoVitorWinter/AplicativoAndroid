@@ -13,6 +13,7 @@ export default function App() {
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
   const [palavra, setPalavra] = useState("");
+  const [dica, setDica] = useState("");
   const [jogo, setJogo] = useState("");
 
   const checkScreen = (checkScreen) => checkScreen === screen;
@@ -30,8 +31,8 @@ export default function App() {
       {checkScreen("Home") && <Home changeJogo={changeJogo} changeScreen = {changeScreen} />}
       {checkScreen("Velha") && <Velha player1={player1} player2={player2} changeScreen = {changeScreen} />}
       {checkScreen("EntradaJogadores") && <EntradaJogadores jogo={jogo} mudarNomeJogadores={setJogadores} changeScreen = {changeScreen} />}
-      {checkScreen("EntradaPalavra") && <EntradaPalavra setPalavra={setPalavra} changeScreen = {changeScreen}/>}
-      {checkScreen("Forca") && <Forca palavra={palavra} changeScreen = {changeScreen}/>}
+      {checkScreen("EntradaPalavra") && <EntradaPalavra setPalavra={setPalavra} setDica={setDica} changeScreen = {changeScreen}/>}
+      {checkScreen("Forca") && <Forca palavra={palavra} dica={dica} changeScreen = {changeScreen}/>}
       {checkScreen("Memoria") && <Memoria player1={player1} player2={player2} changeScreen = {changeScreen}/>}
     </View>
   );

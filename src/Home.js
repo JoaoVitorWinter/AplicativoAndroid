@@ -22,19 +22,22 @@ export default function Home(props) {
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     flex: 1,
     gap: 20,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#393E41",
   },
   cardSelecaoJogo: {
     width: 300,
     height: 75,
-    borderStyle: "solid",
-    borderColor: "black",
-    borderWidth: 1,
+    backgroundColor: "#FAFAFA",
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
+  },
+  texto: {
+    color: "#FAFAFA",
   },
 });

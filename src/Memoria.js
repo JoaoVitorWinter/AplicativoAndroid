@@ -67,7 +67,7 @@ export default function Memoria(props) {
 
     console.log(cartas);
     console.log(cartasMostradas);
-  
+
     const voltarHome = () => {
         props.changeScreen("Home");
     }
@@ -118,39 +118,43 @@ export default function Memoria(props) {
     return (
         <View style={styles.container}>
             <View>
-                <Text>Player 1: {pontos1}</Text>
-                <Text>Player 2: {pontos2}</Text>
+                <Text style={styles.texto}>Player 1: {pontos1}</Text>
+                <Text style={styles.texto}>Player 2: {pontos2}</Text>
             </View>
-            <Text>Vez de: {vez}</Text>
+            <Text style={styles.texto}>Vez de: {vez}</Text>
             <Text style={styles.situacao}>{situacao}</Text>
             {
                 cartasMostradas.map((linha, indexLinha) => {
                     return (
                         <View style={styles.linha} key={indexLinha}>
-                            {linha.map((coluna, indexColuna) => {
-                                return (
-                                    <Pressable onPress={() => {
-                                        handleClickCarta(indexLinha, indexColuna);
-                                    }} style={styles.cartao} key={indexLinha + indexColuna}>
-                                        <Text>{coluna ? cartas[indexLinha][indexColuna] : ""}</Text>
-                                    </Pressable>
-                                )
-                            })}
+                            {
+                                linha.map((coluna, indexColuna) => {
+                                    return (
+                                        <Pressable onPress={() => {
+                                            handleClickCarta(indexLinha, indexColuna);
+                                        }} style={styles.cartao} key={indexLinha + indexColuna}>
+                                            <Text style={styles.texto}>{coluna ? cartas[indexLinha][indexColuna] : ""}</Text>
+                                        </Pressable>
+                                    )
+                                })
+                            }
                         </View>
                     )
                 })
             }
-            <Pressable style={styles.botao} onPress={voltarHome}><Text style={styles.texto}>Voltar</Text></Pressable>
+            <Pressable style={styles.botao} onPress={voltarHome}><Text>Voltar</Text></Pressable>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
+        width: "100%",
         flex: 1,
         gap: 10,
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "#393E41",
     },
     cartao: {
         justifyContent: "center",
@@ -158,7 +162,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderStyle: "solid",
-        borderColor: "black",
+        borderColor: "#FAFAFA",
         borderWidth: 1,
         borderRadius: 10,
     },
@@ -169,19 +173,18 @@ const styles = StyleSheet.create({
         gap: 10,
     },
     botao: {
-        padding: 15,
-        width: 100,
-        backgroundColor: "#0050FF",
-        borderStyle: "solid",
-        borderColor: "black",
-        borderWidth: 1,
+        width: 300,
+        height: 50,
+        backgroundColor: "#FAFAFA",
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
     },
     texto: {
-        color: "#FAFAFA",
+      color: "#FAFAFA",
     },
     situacao: {
         fontSize: 20,
+        color: "#FAFAFA",
     }
 });

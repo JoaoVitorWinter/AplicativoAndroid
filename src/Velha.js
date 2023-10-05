@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, Pressable } from "react-native";
 
 // Mudar para Pressable
 export default function Velha(props) {
@@ -10,9 +10,9 @@ export default function Velha(props) {
     ]);
     const [vez, setVez] = useState("X");
 
-     useEffect(() => {  
-         verificarVitoria();
-     }, [botoes]);
+    useEffect(() => {
+        verificarVitoria();
+    }, [botoes]);
 
     const trocarVez = () => {
         if (vez == "X") {
@@ -78,49 +78,45 @@ export default function Velha(props) {
     }
 
     return (
-        <View>
-
-            <Button title="Voltar" onPress={voltarAoHome} />
+        <View style={styles.container}>
+            <Text style={styles.texto}>Vez de: {vez} - {vez == "X" ? props.player1 : props.player2}</Text>
             <View style={styles.jogo}>
-                <View style={styles.row}>
-                    <Button title={botoes[0][0]} onPress={() => {
-                        handleClickBotoes(0, 0);
-                    }} />
-                    <Button title={botoes[0][1]} onPress={() => {
-                        handleClickBotoes(0, 1);
-                    }} />
-                    <Button title={botoes[0][2]} onPress={() => {
-                        handleClickBotoes(0, 2);
-                    }} />
-                </View>
-                <View style={styles.row}>
-                    <Button title={botoes[1][0]} onPress={() => {
-                        handleClickBotoes(1, 0);
-                    }} />
-                    <Button title={botoes[1][1]} onPress={() => {
-                        handleClickBotoes(1, 1);
-                    }} />
-                    <Button title={botoes[1][2]} onPress={() => {
-                        handleClickBotoes(1, 2);
-                    }} />
-                </View>
-                <View style={styles.row}>
-                    <Button title={botoes[2][0]} onPress={() => {
-                        handleClickBotoes(2, 0);
-                    }} />
-                    <Button title={botoes[2][1]} onPress={() => {
-                        handleClickBotoes(2, 1);
-                    }} />
-                    <Button title={botoes[2][2]} onPress={() => {
-                        handleClickBotoes(2, 2);
-                    }} />
-                </View>
+                {
+                    botoes.map((linha, indexLinha) => {
+                        return (
+                            <View style={styles.row} key={indexLinha}>
+                                {
+                                    linha.map((coluna, indexColuna) => {
+                                        return (
+                                            <Pressable style={styles.celula} onPress={() => {
+                                                handleClickBotoes(indexLinha, indexColuna);
+                                            }} key={(indexLinha + indexColuna)}>
+                                                <Text style={styles.texto}>{coluna}</Text>
+                                            </Pressable>
+                                        );
+                                    })
+                                }
+                            </View>
+                        );
+                    })
+                }
             </View>
+            <Pressable style={styles.botao} onPress={voltarAoHome}>
+                <Text>Voltar</Text>
+            </Pressable>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        width: "100%",
+        flex: 1,
+        gap: 20,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#393E41",
+    },
     jogo: {
         marginTop: 10,
         gap: 5,
@@ -130,5 +126,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         gap: 5,
+    },
+    celula: {
+        width: 100,
+        height: 100,
+        borderStyle: "solid",
+        borderColor: "#FAFAFA",
+        borderWidth: 1,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    botao: {
+        width: 300,
+        height: 50,
+        backgroundColor: "#FAFAFA",
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    texto: {
+      color: "#FAFAFA",
     },
 });
