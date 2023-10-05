@@ -5,8 +5,8 @@ export default function EntradaPalavra(props) {
     const [palavra, setPalavra] = useState("");
 
     const handleClickComecar = () => {
-        if (palavra.length > 2) {
-            props.setPalavra(palavra);
+        if (palavra.length > 2 && palavra.match("[A-z\s]+")) {
+            props.setPalavra(palavra.toUpperCase());
             props.changeScreen("Forca");
         }
     }

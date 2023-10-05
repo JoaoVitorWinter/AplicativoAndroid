@@ -93,6 +93,7 @@ export default function Forca(props) {
                 break;
         }
     }
+
     const verificarChute = (chute) => {
         var newLetrasJogadas = [...letrasJogadas];
         for (let indice = 0; indice < newLetrasJogadas.length; indice++) {
@@ -102,14 +103,15 @@ export default function Forca(props) {
             }
         }
 
-        newLetrasJogadas.push("" + chute + " ");
+        newLetrasJogadas.push(chute + " ");
         setLetrasJogadas(newLetrasJogadas);
         return true;
     }
+
     const fazerChute = (chute) => {
         input.value = "";
-        chute = chute.toLowerCase();
-        if (chute.length == 1) {
+        chute = chute.toUpperCase();
+        if (chute.length == 1 && chute.match("[A-z]+")) {
             if (!verificarChute(chute)) {
                 return;
             }
@@ -117,7 +119,7 @@ export default function Forca(props) {
             var newLetras = [...letras];
             var possuiLetra = false;
             for (let indice = 0; indice < props.palavra.length; indice++) {
-                if (props.palavra.charAt(indice).toLowerCase() == chute) {
+                if (props.palavra.charAt(indice) == chute) {
                     newLetras[indice] = `${props.palavra.charAt(indice)}`;
                     possuiLetra = true;
                 }
@@ -129,7 +131,7 @@ export default function Forca(props) {
                 setErros((erros + 1))
             }
         } else if (chute.length == props.palavra.length) {
-            if (chute == props.palavra.toLowerCase()) {
+            if (chute == props.palavra) {
                 setLetras(props.palavra.split(""));
             } else {
                 if (!verificarChute(chute)) {
@@ -142,10 +144,8 @@ export default function Forca(props) {
     }
 
     const verificarVitoria = () => {
-        for (let indice = 0; indice < props.palavra.length; indice++) {
-            if (letras[indice] == "_ ") {
-                return;
-            }
+        if (!(letras.join("") == props.palavra)) {
+            return;
         }
 
         alert(`Você ganhou! A palavra secreta era ${props.palavra}`);
