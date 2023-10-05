@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 
-let cartasIniciais = ["A", "A", "B", "B", "C", "C", "D", "D", "E", "E", "F", "F", "G", "G", "H", "H", "I", "I", "J", "J", "K", "K", "L", "L", "M", "M", "N", "N", "O", "O", "P", "P", "Q", "Q", "R", "R", "S", "S", "T", "T", "U", "U", "V", "V", "W", "W", "X", "X", "Z", "Z"];
-let matriz = [[], [], [], [], [], [], [], [], [], []];
-for (let indiceY = 0; indiceY < matriz.length; indiceY++) {
-    for (let indiceX = 0; indiceX < 5; indiceX++) {
-        let numeroRandom = Math.floor(Math.random() * (cartasIniciais.length));
-        matriz[indiceY][indiceX] = cartasIniciais[numeroRandom];
-        cartasIniciais.splice(numeroRandom, 1);
-    }
-}
 export default function Memoria(props) {
+    let cartasIniciais = ["A", "A", "B", "B", "C", "C", "D", "D", "E", "E", "F", "F", "G", "G", "H", "H", "I", "I", "J", "J", "K", "K", "L", "L", "M", "M", "N", "N", "O", "O", "P", "P", "Q", "Q", "R", "R", "S", "S", "T", "T", "U", "U", "V", "V", "W", "W", "X", "X", "Z", "Z"];
+    let matriz = [[], [], [], [], [], [], [], [], [], []];
+    for (let indiceY = 0; indiceY < matriz.length; indiceY++) {
+        for (let indiceX = 0; indiceX < 5; indiceX++) {
+            let numeroRandom = Math.floor(Math.random() * (cartasIniciais.length));
+            matriz[indiceY][indiceX] = cartasIniciais[numeroRandom];
+            cartasIniciais.splice(numeroRandom, 1);
+        }
+    }
+
     const [vez, setVez] = useState(props.player1);
     const [statusJogo, setStatusJogo] = useState(0);
     const [quantidadeTrue, setQuantidadeTrue] = useState(0);
@@ -35,8 +36,10 @@ export default function Memoria(props) {
             }, 1000);
         }
     }, [statusJogo]);
-    console.log("status jogo:" + statusJogo)
-    console.log("quantidade true:" + quantidadeTrue)
+
+    console.log("status jogo:" + statusJogo);
+    console.log("quantidade true:" + quantidadeTrue);
+
     useEffect(() => {
         if (quantidadeTrue == 50) {
             if (pontos1 > pontos2) {
@@ -64,6 +67,7 @@ export default function Memoria(props) {
 
     console.log(cartas);
     console.log(cartasMostradas);
+  
     const voltarHome = () => {
         props.changeScreen("Home");
     }
@@ -75,6 +79,7 @@ export default function Memoria(props) {
             setVez(props.player1)
         }
     }
+
     const handleClickCarta = (linhaClicada, colunaClicada) => {
         if (cartasMostradas[linhaClicada][colunaClicada] == false && podeJogar) {
             var newCartasMostradas = [[...cartasMostradas[0]], [...cartasMostradas[1]], [...cartasMostradas[2]], [...cartasMostradas[3]], [...cartasMostradas[4]], [...cartasMostradas[5]], [...cartasMostradas[6]], [...cartasMostradas[7]], [...cartasMostradas[8]], [...cartasMostradas[9]]];
