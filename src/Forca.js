@@ -108,7 +108,6 @@ export default function Forca(props) {
     }
 
     const fazerChute = (chute) => {
-        input.value = "";
         chute = chute.toUpperCase();
         if (chute.length == 1 && chute.match("[A-z]+")) {
             if (!verificarChute(chute)) {
