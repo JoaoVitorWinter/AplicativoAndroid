@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 
 export default function EntradaJogadores(props) {
   const [player1, setPlayer1] = useState("");
