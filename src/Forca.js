@@ -14,7 +14,6 @@ export default function Forca(props) {
         "\t|\n" +
         "=======")
     let array = props.palavra.split("");
-    let input = document.getElementById("input");
     array = array.map((letra) => {
         if (letra != " ") {
             return "_ "
@@ -113,6 +112,7 @@ export default function Forca(props) {
         chute = chute.toUpperCase();
         if (chute.length == 1 && chute.match("[A-z]+")) {
             if (!verificarChute(chute)) {
+                setChute("");
                 return;
             }
 
@@ -130,17 +130,22 @@ export default function Forca(props) {
             } else {
                 setErros((erros + 1))
             }
+            setChute("");
         } else if (chute.length == props.palavra.length) {
             if (chute == props.palavra) {
                 setLetras(props.palavra.split(""));
+                setChute("");
             } else {
                 if (!verificarChute(chute)) {
+                    setChute("");
                     return;
                 }
 
                 setErros((erros + 1));
+                setChute("");
             }
         } else {
+            setChute("");
             return alert("Chute inválido!")
         }
     }
