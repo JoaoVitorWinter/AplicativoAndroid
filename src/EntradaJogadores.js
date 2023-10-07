@@ -23,9 +23,9 @@ export default function EntradaJogadores(props) {
     <View style={styles.container}>
       <Text style={styles.titulo}>{props.jogo}</Text>
       <Text style={styles.texto}>Player 1: {player1}</Text>
-      <TextInput style={styles.input} placeholder={'Player 1'} onChangeText={setPlayer1}></TextInput>
+      <TextInput style={styles.input} placeholderTextColor={"#FAFAFA"} placeholder={'Player 1'} onChangeText={setPlayer1}></TextInput>
       <Text style={styles.texto}>Player 2: {player2}</Text>
-      <TextInput style={styles.input} placeholder={'Player 2'} onChangeText={setPlayer2}></TextInput>
+      <TextInput style={styles.input} placeholderTextColor={"#FAFAFA"} placeholder={'Player 2'} onChangeText={setPlayer2}></TextInput>
       <Pressable style={styles.botao} onPress={handleClickComecar}><Text>Começar</Text></Pressable>
       <Pressable style={styles.botao} onPress={handleClickVoltar}><Text>Voltar</Text></Pressable>
     </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 15,
     borderRadius: 8,
-    color: "white",
+    color: "#FAFAFA",
   },
   titulo: {
     fontSize: 30,

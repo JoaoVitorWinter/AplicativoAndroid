@@ -22,8 +22,8 @@ export default function EntradaPalavra(props) {
     return (
         <View style={styles.container}>
             <Text style={styles.texto}>Digite a palavra secreta da forca! Apenas letras sem acento e espaços!</Text>
-            <TextInput style={styles.input} placeholder={"Palavra secreta"} onChangeText={setPalavra}></TextInput>
-            <TextInput style={styles.input} placeholder={"Dica (opcional)"} onChangeText={setDica}></TextInput>
+            <TextInput style={styles.input} placeholderTextColor={"#FAFAFA"} placeholder={"Palavra secreta"} onChangeText={setPalavra}></TextInput>
+            <TextInput style={styles.input} placeholderTextColor={"#FAFAFA"} placeholder={"Dica (opcional)"} onChangeText={setDica}></TextInput>
             <Pressable style={styles.botao} onPress={handleClickComecar}><Text>Começar</Text></Pressable>
             <Pressable style={styles.botao} onPress={handleClickVoltar}><Text>Voltar</Text></Pressable>
         </View>
@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
     },
     texto: {
         color: "#FAFAFA",
+        textAlign: "center",
     },
 });

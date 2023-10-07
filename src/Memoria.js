@@ -37,9 +37,6 @@ export default function Memoria(props) {
         }
     }, [statusJogo]);
 
-    console.log("status jogo:" + statusJogo);
-    console.log("quantidade true:" + quantidadeTrue);
-
     useEffect(() => {
         if (quantidadeTrue == 50) {
             if (pontos1 > pontos2) {
@@ -64,9 +61,6 @@ export default function Memoria(props) {
         [false, false, false, false, false],
         [false, false, false, false, false],
         [false, false, false, false, false]]);
-
-    console.log(cartas);
-    console.log(cartasMostradas);
 
     const voltarHome = () => {
         props.changeScreen("Home");
@@ -117,9 +111,9 @@ export default function Memoria(props) {
 
     return (
         <View style={styles.container}>
-            <View>
-                <Text style={styles.texto}>Player 1: {pontos1}</Text>
-                <Text style={styles.texto}>Player 2: {pontos2}</Text>
+            <View style={styles.divPontos}>
+                <Text style={styles.texto}>{props.player1}: {pontos1}</Text>
+                <Text style={styles.texto}>{props.player2}: {pontos2}</Text>
             </View>
             <Text style={styles.texto}>Vez de: {vez}</Text>
             <Text style={styles.situacao}>{situacao}</Text>
@@ -156,6 +150,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#393E41",
     },
+    divPontos: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: 325,
+    },
     cartao: {
         justifyContent: "center",
         alignItems: "center",
@@ -181,7 +180,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     texto: {
-      color: "#FAFAFA",
+        color: "#FAFAFA",
     },
     situacao: {
         fontSize: 20,

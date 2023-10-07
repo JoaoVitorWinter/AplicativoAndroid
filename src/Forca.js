@@ -173,7 +173,7 @@ export default function Forca(props) {
                 <Text style={styles.texto}>{letras}</Text>
             </View>
             <View style={styles.divChute}>
-                <TextInput id={"input"} style={styles.input} placeholder={"Seu chute"} onChangeText={setChute}></TextInput>
+                <TextInput id={"input"} style={styles.input} placeholderTextColor={"#FAFAFA"} placeholder={"Seu chute"} onChangeText={setChute}></TextInput>
                 <Pressable style={styles.botao} onPress={() => {
                     fazerChute(chute);
                 }}><Text>Chutar</Text></Pressable>
