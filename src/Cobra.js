@@ -58,9 +58,11 @@ export default function Cobra(props) {
         var newCobra = criarSpreadDaCobra();
         setPosicaoAntiga(newCobra[newCobra.length - 1]);
 
-        newCobra = newCobra.map((value, index) => {
-            return index == 0 ? [value[0] - velY, value[1] + velX] : newCobra[index - 1];
-        });
+        newCobra.unshift([newCobra[0][0] - velY, newCobra[0][1] + velX]);
+        newCobra.pop();
+        // newCobra = newCobra.map((value, index) => {
+        //     return index == 0 ? [value[0] - velY, value[1] + velX] : newCobra[index - 1];
+        // });
 
         for (let indice = 3; indice < newCobra.length; indice++) {
             if (newCobra[indice][0] == newCobra[0][0]) {
@@ -171,30 +173,30 @@ export default function Cobra(props) {
             <Pressable onPress={() => [
                 mudarDirecao(0, 1)
             ]} style={styles.botao}>
-                <Text style>cima</Text>
+                <Text>CIMA</Text>
             </Pressable>
             <View style={styles.divLados}>
                 <Pressable onPress={() => [
                     mudarDirecao(-1, 0)
                 ]} style={styles.botaoLados}>
-                    <Text style>esquerda</Text>
+                    <Text>ESQUERDA</Text>
                 </Pressable>
                 <Pressable onPress={() => [
                     mudarDirecao(1, 0)
                 ]} style={styles.botaoLados}>
-                    <Text style>direita</Text>
+                    <Text>DIREITA</Text>
                 </Pressable>
             </View>
             <Pressable onPress={() => [
                 mudarDirecao(0, -1)
             ]} style={styles.botao}>
-                <Text style>baixo</Text>
+                <Text>BAIXO</Text>
             </Pressable>
             <View>
 
             </View>
             <Pressable onPress={voltarHome} style={styles.botao}>
-                <Text style>Voltar</Text>
+                <Text>Voltar</Text>
             </Pressable>
         </View>
     );
