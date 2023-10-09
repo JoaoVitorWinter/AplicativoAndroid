@@ -15,6 +15,9 @@ export default function Home(props) {
         props.changeJogo("Memoria");
         props.changeScreen("EntradaJogadores");
       }} style={styles.cardSelecaoJogo} ><Text>Jogo da Memória</Text></Pressable>
+      <Pressable onPress={() => {
+        props.changeScreen("Cobra");
+      }} style={styles.cardSelecaoJogo} ><Text>Jogo da Cobrinha</Text></Pressable>
     </View>
   )
 }
