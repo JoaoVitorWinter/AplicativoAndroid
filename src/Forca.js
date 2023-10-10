@@ -6,13 +6,7 @@ export default function Forca(props) {
     const [erros, setErros] = useState(0);
     const [chute, setChute] = useState("");
     const [letrasJogadas, setLetrasJogadas] = useState([""]);
-    const [desenho, setDesenho] = useState("+---+\n" +
-        "|\t|\n" +
-        "\t|\n" +
-        "\t|\n" +
-        "\t|\n" +
-        "\t|\n" +
-        "=======")
+    const [desenho, setDesenho] = useState("|")
     let array = props.palavra.split("");
     array = array.map((letra) => {
         if (letra != " ") {
@@ -34,58 +28,41 @@ export default function Forca(props) {
     const mudarDesenho = () => {
         switch (erros) {
             case 1:
-                setDesenho("+---+\n" +
-                    " |\t|\n" +
-                    "O\t|\n" +
-                    "\t|\n" +
-                    "\t|\n" +
-                    "\t|\n" +
-                    "=======");
+                setDesenho("" +
+                    "|" +
+                    "\nO");
                 break;
             case 2:
-                setDesenho("+---+\n" +
-                    " |\t|\n" +
-                    "O\t|\n" +
-                    " |\t|\n" +
-                    "\t|\n" +
-                    "\t|\n" +
-                    "=======");
+                setDesenho("" +
+                    "|" +
+                    "\nO" +
+                    "\n|");
                 break;
             case 3:
-                setDesenho("+---+\n" +
-                    " |\t|\n" +
-                    "O\t|\n" +
-                    "/|\t|\n" +
-                    "\t|\n" +
-                    "\t|\n" +
-                    "=======");
+                setDesenho("" +
+                    "|" +
+                    "\nO" +
+                    "\n/| ");
                 break;
             case 4:
-                setDesenho("+---+\n" +
-                    " |\t|\n" +
-                    "O\t|\n" +
-                    "/|\\\t|\n" +
-                    "\t|\n" +
-                    "\t|\n" +
-                    "=======");
+                setDesenho("" +
+                    "|" +
+                    "\nO" +
+                    "\n/|\\");
                 break;
             case 5:
-                setDesenho("+---+\n" +
-                    " |\t|\n" +
-                    "O\t|\n" +
-                    "/|\\\t|\n" +
-                    "/\t|\n" +
-                    "\t|\n" +
-                    "=======");
+                setDesenho("" +
+                    "|" +
+                    "\nO" +
+                    "\n/|\\" +
+                    "\n/ ");
                 break;
             case 6:
-                setDesenho("+---+\n" +
-                    " |\t|\n" +
-                    "O\t|\n" +
-                    "/|\\\t|\n" +
-                    "/ \\\t|\n" +
-                    "\t|\n" +
-                    "=======");
+                setDesenho("" +
+                    "|" +
+                    "\nO" +
+                    "\n/|\\" +
+                    "\n/\\");
 
                 alert(`Você perdeu! A palavra secreta era ${props.palavra}`);
                 voltarHome();
@@ -164,16 +141,24 @@ export default function Forca(props) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.divForca}>
-                <Text style={styles.texto}>Dica: {props.dica}</Text>
-                <Text style={styles.caixaDesenho}>{desenho}</Text>
+            <Text style={styles.texto}>Dica: {props.dica}</Text>
+            <View style={styles.caixaDesenho}>
+                <View>
+                    <View style={styles.linhaCima}></View>
+                </View>
+                <View style={styles.meio}>
+                    <Text style={styles.texto}>{desenho}</Text>
+                    <View style={styles.tronco}></View>
+                    <View style={styles.nada}></View>
+                </View>
+                <View style={styles.linha}></View>
             </View>
             <View style={styles.divJogo}>
                 <Text style={styles.caixaLetras}>{letrasJogadas}</Text>
                 <Text style={styles.texto}>{letras}</Text>
             </View>
             <View style={styles.divChute}>
-                <TextInput id={"input"} style={styles.input} placeholderTextColor={"#FAFAFA"} placeholder={"Seu chute"} onChangeText={setChute}></TextInput>
+                <TextInput value={chute} style={styles.input} placeholderTextColor={"#FAFAFA"} placeholder={"Seu chute"} onChangeText={setChute}></TextInput>
                 <Pressable style={styles.botao} onPress={() => {
                     fazerChute(chute);
                 }}><Text>Chutar</Text></Pressable>
@@ -206,6 +191,32 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         color: "#FAFAFA",
+    },
+    meio: {
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    linha: {
+        borderStyle: "solid",
+        borderColor: "#FAFAFA",
+        borderWidth: 1,
+        width: 100,
+    },
+    linhaCima: {
+        borderStyle: "solid",
+        borderColor: "#FAFAFA",
+        borderWidth: 1,
+        width: 70,
+    },
+    tronco: {
+        borderStyle: "solid",
+        borderColor: "#FAFAFA",
+        borderWidth: 1,
+        height: 150,
+        alignSelf: "center",
+    },
+    nada: {
+        backgroundColor: "#393E41",
     },
     divJogo: {
         alignItems: "center",
@@ -247,5 +258,6 @@ const styles = StyleSheet.create({
     },
     texto: {
         color: "#FAFAFA",
+        textAlign: "center",
     },
 });
