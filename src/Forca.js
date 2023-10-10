@@ -107,7 +107,7 @@ export default function Forca(props) {
                 setErros((erros + 1))
             }
             setChute("");
-        } else if (chute.length == props.palavra.length && chute.palavra.match(/^[A-z\s]+$/g)) {
+        } else if (chute.length == props.palavra.length && chute.match(/^[A-z\s]+$/g)) {
             if (chute == props.palavra) {
                 setLetras(props.palavra.split(""));
                 setChute("");
