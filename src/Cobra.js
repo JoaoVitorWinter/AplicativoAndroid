@@ -22,7 +22,6 @@ export default function Cobra(props) {
     const [velX, setVelX] = useState(1);
     const [velY, setVelY] = useState(0);
     const [posicaoAntiga, setPosicaoAntiga] = useState([5, 4]);
-    const [velocidadeAntiga, setVelocidadeAntiga] = useState([1, 0]);
 
     useEffect(() => {
         if (cobra[0][0] == morango[0] && cobra[0][1] == morango[1]) {
@@ -41,11 +40,11 @@ export default function Cobra(props) {
     }, [morango]);
 
     const mudarDirecao = (velocidadeX, velocidadeY) => {
-        if (velocidadeX * -1 == velocidadeAntiga[0]) {
+        if (velocidadeX * -1 == velX) {
             return;
         }
 
-        if (velocidadeY * -1 == velocidadeAntiga[1]) {
+        if (velocidadeY * -1 == velY) {
             return;
         }
 
@@ -58,7 +57,7 @@ export default function Cobra(props) {
 
         var newCobra = criarSpreadDaCobra();
         setPosicaoAntiga(newCobra[newCobra.length - 1]);
-
+        
         newCobra.unshift([newCobra[0][0] - velY, newCobra[0][1] + velX]);
         newCobra.pop();
         // newCobra = newCobra.map((value, index) => {
@@ -74,7 +73,6 @@ export default function Cobra(props) {
         }
 
         setCobra(newCobra);
-        setVelocidadeAntiga([velX, velY]);
     }
 
     const criarSpreadDaCobra = () => {
