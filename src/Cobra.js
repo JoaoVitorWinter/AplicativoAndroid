@@ -29,15 +29,17 @@ export default function Cobra(props) {
         } else {
             mudarTabuleiro();
         }
-
-        setTimeout(() => {
-            moverCobra();
-        }, 250);
     }, [cobra]);
 
     useEffect(() => {
         mudarTabuleiro();
     }, [morango]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            moverCobra();
+        }, 250);
+    }, [tabuleiro]);
 
     const mudarDirecao = (velocidadeX, velocidadeY) => {
         if (velocidadeX * -1 == velX) {
